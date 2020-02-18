@@ -126,7 +126,13 @@ The Ziegler-Nichols Tuning method applies to plants with neither integrators nor
 
 <img width="527" alt="Screen Shot 2020-02-17 at 8 25 23 PM" src="https://user-images.githubusercontent.com/16707828/74695898-a8c24d00-51c3-11ea-8655-9ed063baa802.png">
 
-After using the table, values were calculated. However, this method is not a one stop shop and will not give accurate values of all constants using this method. Tuning needs to be used experimentally. However, this method gives an incredible starting point to where the values should be close to.
+After using the table, values were calculated. However, this method is not a one stop shop and will not give accurate values of all constants using this method. Tuning needs to be used experimentally. However, this method gives an incredible starting point to where the values should be. 
+
+`````````````
+Kp = 0.4
+Ki = 0.00115
+Kd = 0.075
+`````````````
 
 
 
