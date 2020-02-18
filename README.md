@@ -141,3 +141,10 @@ Experimental tuning was required to get the system to behave as intended. In ord
 <img width="601" alt="Screen Shot 2020-02-17 at 8 28 45 PM" src="https://user-images.githubusercontent.com/16707828/74696036-1b332d00-51c4-11ea-8441-b745f745d14a.png">
 
 
+## THE VARIABLE INPUT MODE
+
+he main objective of this portion of the project is to read the output value of the 10KΩ potentiometer on the DEMO board using the Analog to Digital Converter as a reference for the PWM signal developed. First, it was ensured that the 10KΩ POT of the demo board was connected to ADC0 reading the value between 0 and 100, moreover; the scale of 0-100 was too grand, so the range was normalized between a range of 0 to 1 that was named PortNorm in the code. Then, the value was read from the Infrared sensor that is connected to ADC1 into a variable named IrSen, the value was saved and scaled to a range between 0 and 1. That normalized value was stored in a variable called IrNorm. The error signal (ErrSig) was acquired by subtracting IrNorm from PotNorm. From there, the pulse width was obtained using the following equation.
+`````````````
+<img width="417" alt="Screen Shot 2020-02-17 at 8 32 12 PM" src="https://user-images.githubusercontent.com/16707828/74696168-985ea200-51c4-11ea-98b0-e20a31957256.png">
+`````````````
+Note that the minimum fan duty cycle (MIN_PW) is equal to 0.6
