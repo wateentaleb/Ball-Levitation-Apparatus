@@ -4,6 +4,13 @@
 
 The objective is to accurately control the vertical position of the ball inside the Ball Levitation Apparatus. Furthermore, the goal was to were to innovate to create a method or to implement a method to efficiency display data without compromising performance. Various methods were used to tackle the problems, and all will be illustrated and explained in the following report, there will also be a GIF shown below to demonstrate the result. 
 
+## Project Overview 
+In this project, the BL 2100 development board is used as the main controller of the system, the board is furthermore interfaced using a serial link to the Development Environment using the Dynamic C IDE to communicate with the apparatus and the demo board as shown in figure 2. Consequently, it is important to note that there are various moving and important parts needed to be used, this feature might be beneficial in decreasing the difficulty of implementing such systems. However, the communication between these devices is vast and will decrease performance due the transmission of data. There is a data lag caused due to the kernel having to spend time on tasks output or receive data while it should be analyzing the actual position of the ball. Furthermore, various strategies as shown in class and in the laboratories were used to increase reliability of this system.
+
+## Project Constraints 
+Two demonstration modes have been required in the following project, the first being a variable input which needs to be able to accurately position the desired ball position from the potentiometer already in place in the DEMO board. The second being a step input which is used to set the desired ball position to zero, then half and finally at maximum elevation.
+In this implementation, the way that these two modes were switched between each other was with the press of a keyboard key. Pressing the “s” key onto the keyboard switched the system into a step input mode, while pressing the “v” key switched it into the variable input mode. As simple as it seems, this implementation caused problems, questions raised such as how often we should check for user keyboard input, knowing that checking frequently will greatly eradicate performance while not checking enough would cause a miss reading of the user input. Another factor that is important to note is key debouncing, and how to deal with such issues were the first problem tackled in our system. These resolutions will be explained later in the report. Firstly, a demonstration of how each mode was implemented will be discussed.
+
 ## Demonstration
 
 ![embedded](https://user-images.githubusercontent.com/16707828/74694929-15d3e380-51c0-11ea-88a1-2c25f69f68f2.gif)
@@ -95,4 +102,31 @@ The polynomial series are often replaced with a piecewise linear function that r
 <img width="286" alt="Screen Shot 2020-02-17 at 8 10 52 PM" src="https://user-images.githubusercontent.com/16707828/74695326-9c3cf500-51c1-11ea-8aa3-6966ed1e90f6.png">
 
 <img width="420" alt="Screen Shot 2020-02-17 at 8 11 07 PM" src="https://user-images.githubusercontent.com/16707828/74695337-a4953000-51c1-11ea-891a-86e916cfe967.png">
+
+## THE STEP INPUT MODE
+
+The step input mode was achieved using a PID controller previously taught in Control Systems, a PID controller is an instrument used in control applications to control temperature, flow, pressure, speed and other process variables. The proportional integrative derivative controller is used in a control loop feedback mechanism to control process variables and are the most widely used and accurate controller.
+
+The following is the calculator version of a PID control scheme
+
+<img width="287" alt="Screen Shot 2020-02-17 at 8 23 21 PM" src="https://user-images.githubusercontent.com/16707828/74695821-5aad4980-51c3-11ea-9a82-68ed260d289b.png">
+Kp, KI and Kd are proportional, integral and derivative gains, and e(t) is the error signal.
+
+
+Implementing such a complex mathematical equation on the system will greatly reduce performance due to computation times, a more software-oriented solution was suggested in the form of sums. Which can be easily implemented using recurrence equations which can be implemented using a function that calls itself which changing the parameters. The following equation is shown below, T is the time interval between two samples and kT is the sample time.
+
+<img width="488" alt="Screen Shot 2020-02-17 at 8 24 25 PM" src="https://user-images.githubusercontent.com/16707828/74695864-816b8000-51c3-11ea-8348-a536a8597045.png">
+
+Consequently, using a recurrence equation will also greatly limit system performance and accuracy since the time complexity of such an algorithm will create various calls of the own equation and can also condense the stack depending on the amount of recursive and computational space needed to compute this. In order to further increase the systems performance and decreasing lag, the Ziegler-Nichols Method was implemented.
+
+
+## ZIEGLER-NICHOLS TUNING METHOD
+
+The Ziegler-Nichols Tuning method applies to plants with neither integrators nor dominant complex-conjugate poles, whose unit-step response resemble a S-shaped curve with no overshoot. This S-shaped curved is known as the reaction curve. The S-shaped reaction curve can be characterized by two constants, being the delay time L and time constant T, which are determined by drawing a tangent line at the inflection point of the curve and finding the intersections of the tangent line with the time axis and the steady-state level line. Finding the above-mentioned variables are visually demonstrated in figure below. The following table was used to find the controllers individually using the L and T variables.
+
+<img width="527" alt="Screen Shot 2020-02-17 at 8 25 23 PM" src="https://user-images.githubusercontent.com/16707828/74695898-a8c24d00-51c3-11ea-8655-9ed063baa802.png">
+
+After using the table, values were calculated. However, this method is not a one stop shop and will not give accurate values of all constants using this method. Tuning needs to be used experimentally. However, this method gives an incredible starting point to where the values should be close to.
+
+
 
