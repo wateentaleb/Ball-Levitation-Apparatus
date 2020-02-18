@@ -134,5 +134,10 @@ Ki = 0.00115
 Kd = 0.075
 `````````````
 
+## TUNING METHOD AFTER ZIEGLER-NICHOLS METHOD
+
+Experimental tuning was required to get the system to behave as intended. In order to avoid the ineffective method of randomly selecting values until the system behaves as intended. It’s important to understand the effects on the system’s response due to the increase of the different parameters independently. The reason being, if an overshoot, big steady-state error, degraded stability or decreased rise time occurred, it was evident which of these parameters needed to be either increase or decrease to avoid this undesired transient response of the PWM powering the fan. In the figue below, a table was constructed illustrating the behaviors caused by increasing the value of the three parameters independently.
+
+<img width="601" alt="Screen Shot 2020-02-17 at 8 28 45 PM" src="https://user-images.githubusercontent.com/16707828/74696036-1b332d00-51c4-11ea-8441-b745f745d14a.png">
 
 
