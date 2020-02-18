@@ -2,7 +2,7 @@
 
 ## Objective
 
-Control the vertical position of the ball inside the Ball Levitation Apparatus
+The objective is to accurately control the vertical position of the ball inside the Ball Levitation Apparatus. Furthermore, the goal was to were to innovate to create a method or to implement a method to efficiency display data without compromising performance. Various methods were used to tackle the problems, and all will be illustrated and explained in the following report, there will also be a GIF shown below to demonstrate the result. 
 
 ## Demonstration
 
@@ -83,4 +83,16 @@ This information must be considered in the design of position feedback task
 
 <img width="292" alt="Screen Shot 2020-02-17 at 8 08 44 PM" src="https://user-images.githubusercontent.com/16707828/74695263-55e79600-51c1-11ea-9e6e-aa2880de0d7a.png"> <img width="128" alt="Screen Shot 2020-02-17 at 8 08 55 PM" src="https://user-images.githubusercontent.com/16707828/74695292-7a437280-51c1-11ea-83af-eef21c84f2ed.png">
 
+
+## Nonlinearity
+
+Most transducers have a nonlinear relationship between the physical parameter and the electrical output signal
+The relationship is normally given in the form of power series
+The coefficients of such series are given for different types and ranges of the device.
+The mathematical operations for performing the conversion is an undesirable overhead on the software
+The polynomial series are often replaced with a piecewise linear function that replaces each segment of the polynomial with a line segment. For example,
+
+<img width="286" alt="Screen Shot 2020-02-17 at 8 10 52 PM" src="https://user-images.githubusercontent.com/16707828/74695326-9c3cf500-51c1-11ea-8aa3-6966ed1e90f6.png">
+
+<img width="420" alt="Screen Shot 2020-02-17 at 8 11 07 PM" src="https://user-images.githubusercontent.com/16707828/74695337-a4953000-51c1-11ea-891a-86e916cfe967.png">
 
